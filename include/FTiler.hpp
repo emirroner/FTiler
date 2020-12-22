@@ -5,10 +5,6 @@
 #include <algorithm>
 #include <vector>
 
-//
-// FAST TILE MAP EDITOR
-//
-
 struct FTile {
 	unsigned short textureID;
 	int column;
