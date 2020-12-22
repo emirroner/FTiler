@@ -33,7 +33,9 @@ int main()
 
 	// print tilemap rects
 	for (auto const& i : tilemap.getTileRect())
+	{
 		std::cout << "x : " << i.left << ", y : " << i.top << ", w : " << i.width << ", h : " << i.height << std::endl;
+	}
 
 	sf::Event event;
 
