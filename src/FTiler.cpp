@@ -124,6 +124,7 @@ std::vector<FTile> FTiler::parseTileMap(std::string str)
 		FTile data;
 
 		auto values    = split(i,".");
+
 		data.textureID = std::stoi(values[0]);
 		data.column    = std::stoi(values[1]);
 		data.row       = std::stoi(values[2]);
