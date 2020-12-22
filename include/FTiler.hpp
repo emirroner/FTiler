@@ -8,20 +8,6 @@
 //
 // FAST TILE MAP EDITOR
 //
-/*
- * TILE_MAP CODING:
- *   TILE_NUMBER.COLUMN.ROW.FLIP.GHOST_TILE|...
- *
- *	FLIP = 0 : no flip
- *	FLIP = 1 : flip horizontally
- *	FLIP = 2 : flip vertically
- *	FLIP = 3 : flip both
- *
- *  GHOST_TILE is needs on getTileRect
- *  getTileRect passes tile if ghostTile of tile value is 1
- *  so you can get tile rects you want
- *
- */
 
 struct FTile {
 	unsigned short textureID;
