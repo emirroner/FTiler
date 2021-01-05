@@ -1,5 +1,5 @@
 # FTiler
-simple and fast tilemap library for SFML
+Simple and Fast Tilemap Library for SFML
 
 
 **CODING**
