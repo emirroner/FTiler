@@ -60,7 +60,7 @@ private:
 
 	sf::Sprite m_drawingSprite;
 
-	sf::Texture m_texture;
+	sf::Texture* m_texture;
 
 	// eH (parse things)
 	static std::string &ltrim(std::string &s);
