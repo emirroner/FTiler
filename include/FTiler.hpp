@@ -23,7 +23,7 @@ public:
 	void setColor(sf::Color color);
 
 	// sets tilemap texture
-	void setTexture(sf::Texture& texture);
+	void setTexture(const sf::Texture& texture);
 
 	// sets tilemap
 	void setTileMap(std::string tileMap);
@@ -38,7 +38,7 @@ public:
 	void setSize(sf::Vector2f size);
 
 	// draws tilemap
-	void draw(sf::RenderTarget& target,sf::RenderStates states = sf::RenderStates());
+	void draw(sf::RenderTarget& target,sf::RenderStates states = sf::RenderStates::Default);
 
 	// returns tilemap rect (if ghostTile of tile is 0)
 	std::vector<sf::IntRect> getTileRect();
@@ -60,7 +60,7 @@ private:
 
 	sf::Sprite m_drawingSprite;
 
-	sf::Texture* m_texture;
+	sf::Texture m_texture;
 
 	// eH (parse things)
 	static std::string &ltrim(std::string &s);

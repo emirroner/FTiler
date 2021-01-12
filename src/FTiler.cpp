@@ -27,10 +27,10 @@ void FTiler::setColor(sf::Color color)
 	m_drawingSprite.setColor(color);
 }
 
-void FTiler::setTexture(sf::Texture& texture)
+void FTiler::setTexture(const sf::Texture& texture)
 {
-	m_texture = &texture;
-	m_drawingSprite.setTexture(*m_texture);
+	m_texture = texture;
+	m_drawingSprite.setTexture(m_texture);
 }
 
 void FTiler::setTileMap(std::string tileMap)
@@ -72,7 +72,7 @@ void FTiler::setSize(sf::Vector2f size)
 	}
 
 	if (m_tileMap.size() > 0 && col_maxSize > 0)
-		m_drawingSprite.setScale(size.x/(m_cropWidth*col_maxSize),size.y/(m_texture->getSize().y*row_maxSize));
+		m_drawingSprite.setScale(size.x/(m_cropWidth*col_maxSize),size.y/(m_texture.getSize().y*row_maxSize));
 }
 
 void FTiler::draw(sf::RenderTarget& target,sf::RenderStates states)
@@ -83,15 +83,15 @@ void FTiler::draw(sf::RenderTarget& target,sf::RenderStates states)
 		if (i.textureID > 0)
 		{
 			pos.x = i.column * (m_cropWidth*m_drawingSprite.getScale().x);
-			pos.y = i.row * (m_texture->getSize().y*m_drawingSprite.getScale().y);
+			pos.y = i.row * (m_texture.getSize().y*m_drawingSprite.getScale().y);
 
 			m_drawingSprite.setPosition(pos.x,pos.y);
 
-			m_drawingSprite.setTextureRect(sf::IntRect(m_cropWidth*(i.textureID-1), 0, m_cropWidth,m_texture->getSize().y));
+			m_drawingSprite.setTextureRect(sf::IntRect(m_cropWidth*(i.textureID-1), 0, m_cropWidth,m_texture.getSize().y));
 			if (i.flip == 1 || i.flip == 3)
 				m_drawingSprite.setTextureRect(sf::IntRect(m_cropWidth*(i.textureID),m_drawingSprite.getTextureRect().top,-m_cropWidth,m_drawingSprite.getTextureRect().height));
 			if (i.flip == 2 || i.flip == 3)
-				m_drawingSprite.setTextureRect(sf::IntRect(m_drawingSprite.getTextureRect().left,(m_texture->getSize().y*(i.row+1)),m_drawingSprite.getTextureRect().width,-m_texture->getSize().y));
+				m_drawingSprite.setTextureRect(sf::IntRect(m_drawingSprite.getTextureRect().left,(m_texture.getSize().y*(i.row+1)),m_drawingSprite.getTextureRect().width,-m_texture.getSize().y));
 
 			target.draw(m_drawingSprite);
 		}
@@ -104,7 +104,7 @@ std::vector<sf::IntRect> FTiler::getTileRect()
 
 	for (auto const& i : m_tileMap) {
 		if (i.ghostTile == 0) {
-			result.push_back(sf::IntRect(i.column*(m_cropWidth*m_drawingSprite.getScale().x),i.row*(m_texture->getSize().y*m_drawingSprite.getScale().y),m_cropWidth,m_texture->getSize().y));
+			result.push_back(sf::IntRect(i.column*(m_cropWidth*m_drawingSprite.getScale().x),i.row*(m_texture.getSize().y*m_drawingSprite.getScale().y),m_cropWidth,m_texture.getSize().y));
 		}
 	}
 
